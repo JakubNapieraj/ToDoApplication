@@ -11,7 +11,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,7 +42,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         binding = AddNewTaskBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -78,60 +78,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
             }
         });
 
-        binding.setDueTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
+        binding.setDueTv.setOnClickListener(v -> setDue());
 
-                int DAY = calendar.get(Calendar.DATE);
-                int MONTH = calendar.get(Calendar.MONTH);
-                int YEAR = calendar.get(Calendar.YEAR);
+        binding.save.setOnClickListener(v -> saveTask());
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        month = month + 1;
-                        binding.setDueTv.setText(day + "/" + month + "/" + year);
-                        dueDate = day + "/" + month + "/" + year;
-                    }
-                }, YEAR, MONTH, DAY);
-
-                datePickerDialog.show();
-            }
-        });
-
-        binding.save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String task = binding.taskEditText.getText().toString();
-
-                if (task.isEmpty()) {
-                    showToats("Empty task not Allowed");
-                } else {
-                    FirebaseFirestore database = FirebaseFirestore.getInstance();
-                    HashMap<String, Object> taskMap = new HashMap<>();
-                    taskMap.put(Constants.KEY_TASK_NAME, task);
-                    taskMap.put(Constants.KEY_TASK_DUE, dueDate);
-                    taskMap.put(Constants.KEY_TASK_STATUS, 0);
-                    taskMap.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
-                    database.collection(Constants.KEY_COLLECTION_TASKS)
-                            .add(taskMap)
-                            .addOnSuccessListener(documentReference -> {
-                                showToats("Task added");
-                            })
-                            .addOnFailureListener(exeption -> {
-                                showToats(exeption.getMessage());
-                            });
-                }
-                dismiss();
-            }
-        });
-
-    }
-
-    private void showToats(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -147,5 +97,47 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if (activity instanceof OnDialogCloseListener) {
             ((OnDialogCloseListener) activity).onDialogClose(dialog);
         }
+    }
+
+    private void saveTask() {
+        String task = binding.taskEditText.getText().toString();
+        if (task.isEmpty()) {
+            showToats("Empty task not Allowed");
+        } else {
+            FirebaseFirestore database = FirebaseFirestore.getInstance();
+            HashMap<String, Object> taskMap = new HashMap<>();
+            taskMap.put(Constants.KEY_TASK_NAME, task);
+            taskMap.put(Constants.KEY_TASK_DUE, dueDate);
+            taskMap.put(Constants.KEY_TASK_STATUS, 0);
+            taskMap.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+            database.collection(Constants.KEY_COLLECTION_TASKS)
+                    .add(taskMap)
+                    .addOnSuccessListener(documentReference -> showToats("Task added"))
+                    .addOnFailureListener(exeption -> showToats(exeption.getMessage()));
+        }
+        dismiss();
+    }
+
+    private void setDue() {
+        Calendar calendar = Calendar.getInstance();
+
+        int DAY = calendar.get(Calendar.DATE);
+        int MONTH = calendar.get(Calendar.MONTH);
+        int YEAR = calendar.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog =
+                new DatePickerDialog(context,
+                        (datePicker, year, month, day) -> {
+                            month = month + 1;
+                            binding.setDueTv.setText(day + "/" + month + "/" + year);
+                            dueDate = day + "/" + month + "/" + year;
+                        },
+                        YEAR, MONTH, DAY);
+
+        datePickerDialog.show();
+    }
+
+    private void showToats(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }
