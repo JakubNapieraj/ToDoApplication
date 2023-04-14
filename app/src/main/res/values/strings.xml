@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AndroidApp</string>
+    <string name="witamy_ponownie">Witamy Ponownie</string>
+    <string name="zaloguj_si">Zaloguj się</string>
+    <string name="email">E-mail</string>
+    <string name="password">Hasło</string>
+    <string name="za_nowe_konto">Załóż nowe konto</string>
+    <string name="dodaj_zdj_cie">Dodaj zdjęcie</string>
+    <string name="imi">Imię</string>
+    <string name="powt_rz_has_o">Powtórz Hasło</string>
+    <string name="zarejestruj_si">Zarejestruj się</string>
+</resources>

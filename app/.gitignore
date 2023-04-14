@@ -1,0 +1,80 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+build/
+captures/
+.gradle/
+local.properties
+out/
+*.iml
+
+# Android Studio
+*.iml
+.gradle
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/dictionaries
+.idea/libraries
+
+# Keystore files
+*.jks
+*.keystore
+
+# External native build folder generated in Android Studio 2.2 and later
+.cmake/
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Freeline
+freeline.py
+freeline/
+freeline_project_description.json
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# Crashlytics
+crashlytics.properties
+crashlytics-build.properties
+
+# ProGuard
+proguard-*.txt
+proguard-rules.pro
+
+# NativeScript
+node_modules/
+platforms/
+hooks/
+app/App_Resources/
+.idea/nativescript.xml
+.npm/
+
+# AndroidX Navigation
+.navigation/
+
+# AndroidXMigrator
+.res-migrator/
+
+# Firebase ML
+.mlkit/
+
+# Others
+*.log
+*.orig
+local.properties
