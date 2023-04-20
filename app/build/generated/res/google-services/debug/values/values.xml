@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">686568909656-28n7hqqk88mipla5nkv0nutaigns3anf.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">686568909656</string>
+    <string name="google_api_key" translatable="false">AIzaSyBlvw6vZlOcyfFhxaKM4dWQRyqdXzct6Yk</string>
+    <string name="google_app_id" translatable="false">1:686568909656:android:51de78b90205cda9d4532d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBlvw6vZlOcyfFhxaKM4dWQRyqdXzct6Yk</string>
+    <string name="google_storage_bucket" translatable="false">chatapponandroid.appspot.com</string>
+    <string name="project_id" translatable="false">chatapponandroid</string>
+</resources>
