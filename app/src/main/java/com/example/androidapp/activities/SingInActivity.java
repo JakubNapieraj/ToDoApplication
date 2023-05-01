@@ -1,6 +1,7 @@
 package com.example.androidapp.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.androidapp.R;
 import com.example.androidapp.databinding.ActivitySingInBinding;
 import com.example.androidapp.utilities.Constants;
 import com.example.androidapp.utilities.PreferenceManager;
@@ -23,6 +25,14 @@ public class SingInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (isDarkModeOn()) {
+            setTheme(R.style.Theme_AndroidApp_Dark);
+        } else {
+            setTheme(R.style.Theme_AndroidApp);
+        }
+        setContentView(R.layout.activity_main);
+
         preferenceManager = new PreferenceManager(getApplicationContext());
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -96,5 +106,10 @@ public class SingInActivity extends AppCompatActivity {
             binding.progressBar.setVisibility(View.INVISIBLE);
             binding.buttonSingIn.setVisibility(View.VISIBLE);
         }
+    }
+
+    private boolean isDarkModeOn() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
     }
 }

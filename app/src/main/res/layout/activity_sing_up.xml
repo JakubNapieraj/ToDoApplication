@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:text="@string/za_nowe_konto"
-            android:textColor="@color/primary_text"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold" />
 
@@ -44,8 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="?android:attr/selectableItemBackground"
+                android:textColor="@color/primary_dark"
                 android:text="@string/dodaj_zdj_cie"
-                android:textColor="@color/secondary_text"
                 android:textSize="@dimen/_10ssp" />
 
 
@@ -141,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/zaloguj_si"
-            android:textColor="@color/primary"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
 

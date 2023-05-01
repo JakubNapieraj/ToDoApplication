@@ -2,5 +2,6 @@
     <style name="Theme.AndroidApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:background">@color/white</item>
     </style>
 </resources>

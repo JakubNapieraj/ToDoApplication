@@ -1,10 +1,12 @@
 package com.example.androidapp.activities;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.androidapp.R;
 import com.example.androidapp.adapters.UserAdapter;
 import com.example.androidapp.databinding.ActivityUsersBinding;
 import com.example.androidapp.models.User;
@@ -24,6 +26,14 @@ public class UsersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (isDarkModeOn()) {
+            setTheme(R.style.Theme_AndroidApp_Dark);
+        } else {
+            setTheme(R.style.Theme_AndroidApp);
+        }
+        setContentView(R.layout.activity_main);
+
         binding = ActivityUsersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
@@ -80,5 +90,10 @@ public class UsersActivity extends AppCompatActivity {
         } else {
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private boolean isDarkModeOn() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
     }
 }

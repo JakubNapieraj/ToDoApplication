@@ -2,6 +2,7 @@ package com.example.androidapp.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidapp.AddNewTask;
 import com.example.androidapp.OnDialogCloseListener;
+import com.example.androidapp.R;
 import com.example.androidapp.adapters.TaskAdapter;
 import com.example.androidapp.databinding.ActivityMainBinding;
 import com.example.androidapp.models.ToDo;
@@ -37,7 +39,16 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        if (isDarkModeOn()) {
+            setTheme(R.style.Theme_AndroidApp_Dark);
+        } else {
+            setTheme(R.style.Theme_AndroidApp);
+        }
+        setContentView(R.layout.activity_main);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
@@ -144,5 +155,10 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     public void onDialogClose(DialogInterface dialogInterface) {
         getTodos();
         taskAdapter.notifyDataSetChanged();
+    }
+
+    private boolean isDarkModeOn() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
     }
 }

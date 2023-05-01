@@ -33,31 +33,31 @@
         app:layout_constraintTop_toBottomOf="@+id/task_edit_text" />
 
 
-<!--    <FrameLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:animateLayoutChanges="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/task_edit_text">-->
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:animateLayoutChanges="true"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/task_edit_text">-->
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/save"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Save"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="@dimen/_13ssp"-->
-<!--            android:textStyle="bold"/>-->
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:id="@+id/save"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Save"-->
+    <!--            android:textColor="@color/white"-->
+    <!--            android:textSize="@dimen/_13ssp"-->
+    <!--            android:textStyle="bold"/>-->
 
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressBar"-->
-<!--            android:layout_width="@dimen/_25sdp"-->
-<!--            android:layout_height="@dimen/_25sdp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:visibility="invisible"/>-->
-<!--    </FrameLayout>-->
+    <!--        <ProgressBar-->
+    <!--            android:id="@+id/progressBar"-->
+    <!--            android:layout_width="@dimen/_25sdp"-->
+    <!--            android:layout_height="@dimen/_25sdp"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:visibility="invisible"/>-->
+    <!--    </FrameLayout>-->
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"
@@ -65,6 +65,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:text="Save"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_edit_text" />
 

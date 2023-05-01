@@ -1,6 +1,7 @@
 package com.example.androidapp.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.androidapp.R;
 import com.example.androidapp.databinding.ActivitySingUpBinding;
 import com.example.androidapp.utilities.Constants;
 import com.example.androidapp.utilities.PreferenceManager;
@@ -34,6 +36,14 @@ public class SingUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (isDarkModeOn()) {
+            setTheme(R.style.Theme_AndroidApp_Dark);
+        } else {
+            setTheme(R.style.Theme_AndroidApp);
+        }
+        setContentView(R.layout.activity_main);
+
         binding = ActivitySingUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
@@ -143,5 +153,10 @@ public class SingUpActivity extends AppCompatActivity {
             binding.progressBar.setVisibility(View.INVISIBLE);
             binding.buttonSingUp.setVisibility(View.VISIBLE);
         }
+    }
+
+    private boolean isDarkModeOn() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
     }
 }
