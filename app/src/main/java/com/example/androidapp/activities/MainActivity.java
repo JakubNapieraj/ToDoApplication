@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     }
 
     private void singOut() {
-        showToats("Wylogowanie");
+        showToats(getString(R.string.wylogowanie));
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(
                 preferenceManager.getString(Constants.KEY_USER_ID)
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                     preferenceManager.clear();
                     startActivity(new Intent(getApplicationContext(), SingInActivity.class));
                     finish();
-                }).addOnFailureListener(e -> showToats("Nie możemy ciebie wylogować"));
+                }).addOnFailureListener(e -> showToats(getString(R.string.blad_wylogowanie)));
     }
 
     private void getTodos() {
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     }
 
     private void showErrorMessage() {
-        binding.textErrorMessage.setText(String.format("%s", "Nie znaleziono zadań"));
+        binding.textErrorMessage.setText(String.format("%s", getString(R.string.brak_zadan)));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 

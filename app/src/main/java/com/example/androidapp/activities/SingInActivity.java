@@ -31,7 +31,7 @@ public class SingInActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.Theme_AndroidApp);
         }
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sing_in);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
@@ -75,7 +75,7 @@ public class SingInActivity extends AppCompatActivity {
                         startActivity(intent);
                     }else {
                         lodading(false);
-                        showToats("Błędne dane.");
+                        showToats(getString(R.string.blad_logowania));
                     }
                 });
     }
@@ -86,13 +86,13 @@ public class SingInActivity extends AppCompatActivity {
 
     private Boolean isValidSingInDetails() {
         if (binding.inputEmail.getText().toString().trim().isEmpty()){
-            showToats("Wprowadź email.");
+            showToats(getString(R.string.wprowadz_email));
             return false;
         }else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()){
-            showToats("Wprowadź poprawny email");
+            showToats(getString(R.string.wprowadz_email));
             return false;
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()){
-            showToats("Wprowadź hasło.");
+            showToats(getString(R.string.wprowadz_haslo));
             return false;
         }
         return true;

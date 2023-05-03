@@ -32,7 +32,7 @@ public class UsersActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.Theme_AndroidApp);
         }
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_users);
 
         binding = ActivityUsersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -80,7 +80,7 @@ public class UsersActivity extends AppCompatActivity {
     }
 
     private void showErrorMessage() {
-        binding.textErrorMessage.setText(String.format("%s", "Nie znaleziono użytkownika"));
+        binding.textErrorMessage.setText(String.format("%s", getString(R.string.brak_uzytkownika)));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 

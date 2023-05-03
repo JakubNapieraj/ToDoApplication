@@ -42,7 +42,7 @@ public class SingUpActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.Theme_AndroidApp);
         }
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sing_up);
 
         binding = ActivitySingUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -94,21 +94,21 @@ public class SingUpActivity extends AppCompatActivity {
 
     private Boolean isValidSingUpDetails() {
         if (encodedImage == null) {
-            showToats("Wybierz zdjęcie profilowe.");
+            showToats(getString(R.string.wybierz_zdjecie));
             return false;
         } else if (binding.inputName.getText().toString().trim().isEmpty()) {
-            showToats("Wprowadź imię.");
+            showToats(getString(R.string.wprowadz_imie));
             return false;
         } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
-            showToats("Wprowadź e-mail.");
+            showToats(getString(R.string.wprowadz_email));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-            showToats("Wprowadź poprawny e-mail");
+            showToats(getString(R.string.niepoprawny_email));
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
-            showToats("Wprowadź hasło.");
+            showToats(getString(R.string.wprowadz_haslo));
             return false;
         } else if (!binding.inputConfirmPassword.getText().toString().equals(binding.inputPassword.getText().toString())) {
-            showToats("Hasła muszą być identyczne");
+            showToats(getString(R.string.identyczne_hasla));
             return false;
         }
 

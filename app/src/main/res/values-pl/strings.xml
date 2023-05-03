@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aplikcja</string>
+    <string name="witamy_ponownie">Witamy Ponownie</string>
+    <string name="zaloguj_si">Zaloguj się</string>
+    <string name="email">E-mail</string>
+    <string name="password">Hasło</string>
+    <string name="za_nowe_konto">Załóż nowe konto</string>
+    <string name="dodaj_zdj_cie">Dodaj zdjęcie</string>
+    <string name="imi">Imię</string>
+    <string name="powt_rz_has_o">Powtórz Hasło</string>
+    <string name="zarejestruj_si">Zarejestruj się</string>
+    <string name="blad_logowania">Błąd Logowania</string>
+    <string name="wprowadz_haslo">Wprowadź hasło</string>
+    <string name="niepoprawny_email">Niepoprawny E-mail</string>
+    <string name="wylogowanie">Wylogowanie</string>
+    <string name="blad_wylogowanie">Nie możemy ciebie wylogować</string>
+    <string name="brak_zadan">Nie znaleziono zadań</string>
+    <string name="wybierz_zdjecie">Wybierz zdjęcie profilowe</string>
+    <string name="wprowadz_imie">Wprowadź imię</string>
+    <string name="wprowadz_email">Wprowadź E-mail</string>
+    <string name="identyczne_hasla">Hasła muszą być takie same</string>
+    <string name="brak_uzytkownika">Nie znaleziono użytkownika</string>
+
+</resources>

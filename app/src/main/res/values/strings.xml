@@ -1,12 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AndroidApp</string>
-    <string name="witamy_ponownie">Witamy Ponownie</string>
-    <string name="zaloguj_si">Zaloguj się</string>
+    <string name="witamy_ponownie">Welcome Back</string>
+    <string name="zaloguj_si">Log In</string>
     <string name="email">E-mail</string>
-    <string name="password">Hasło</string>
-    <string name="za_nowe_konto">Załóż nowe konto</string>
-    <string name="dodaj_zdj_cie">Dodaj zdjęcie</string>
-    <string name="imi">Imię</string>
-    <string name="powt_rz_has_o">Powtórz Hasło</string>
-    <string name="zarejestruj_si">Zarejestruj się</string>
+    <string name="password">Password</string>
+    <string name="za_nowe_konto">Create a New Account</string>
+    <string name="dodaj_zdj_cie">Add Photo</string>
+    <string name="imi">Name</string>
+    <string name="powt_rz_has_o">Confirm Password</string>
+    <string name="zarejestruj_si">Register</string>
+    <string name="blad_logowania">Login Error</string>
+    <string name="wprowadz_haslo">Password cannot be empty</string>
+    <string name="niepoprawny_email">Invalid E-mail</string>
+    <string name="wylogowanie">Logout</string>
+    <string name="blad_wylogowanie">We cannot log you out.</string>
+    <string name="brak_zadan">No tasks found.</string>
+    <string name="wybierz_zdjecie">Choose profile photo</string>
+    <string name="wprowadz_imie">Enter name</string>
+    <string name="wprowadz_email">Enter E-mail</string>
+    <string name="identyczne_hasla">Passwords must match</string>
+    <string name="brak_uzytkownika">User not found</string>
+
 </resources>
