@@ -21,5 +21,8 @@
     <string name="wprowadz_email">Enter E-mail</string>
     <string name="identyczne_hasla">Passwords must match</string>
     <string name="brak_uzytkownika">User not found</string>
+    <string name="wprowadz_zadanie">Write your task here</string>
+    <string name="zapisz">Save</string>
+    <string name="data">Date</string>
 
 </resources>

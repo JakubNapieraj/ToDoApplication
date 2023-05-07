@@ -21,5 +21,8 @@
     <string name="wprowadz_email">Wprowadź E-mail</string>
     <string name="identyczne_hasla">Hasła muszą być takie same</string>
     <string name="brak_uzytkownika">Nie znaleziono użytkownika</string>
+    <string name="wprowadz_zadanie">Zapisz swoje zadanie</string>
+    <string name="zapisz">Zapisz</string>
+    <string name="data">Data</string>
 
 </resources>
