@@ -1,23 +1,30 @@
 package com.example.androidapp.adapters;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidapp.OnItemLongClickListener;
 import com.example.androidapp.databinding.ItemContainerTaskBinding;
 import com.example.androidapp.models.ToDo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder>{
 
     private List<ToDo> todoList;
-
+    
     public TaskAdapter(List<ToDo> todoList) {
+        todoList = sortByPrio((ArrayList<ToDo>) todoList);
         this.todoList = todoList;
     }
+    
 
     @NonNull
     @Override
@@ -43,7 +50,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     class TaskViewHolder extends RecyclerView.ViewHolder {
         ItemContainerTaskBinding binding;
 
-
         public TaskViewHolder(ItemContainerTaskBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
@@ -53,10 +59,37 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             binding.checkbox.setText(toDo.task);
             binding.checkbox.setChecked(toBoolean(toDo.status));
             binding.dueDate.setText(toDo.due);
+
+            // Dodaj obsługę długiego kliknięcia
+            itemView.setOnLongClickListener(v -> {
+                toggleIsPinned(getAdapterPosition());
+                return true;
+            });
+
+            if (toDo.isPinned()) {
+                itemView.setBackgroundColor(Color.YELLOW);
+                Log.d("isPinned ","is true");
+            } else {
+                itemView.setBackgroundColor(Color.TRANSPARENT);
+            }
         }
 
-        private boolean toBoolean(int n){
-            return n!=0;
+        private void toggleIsPinned(int position) {
+            ToDo toDo = todoList.get(position);
+            toDo.setPinned(!toDo.isPinned());
+            todoList = sortByPrio((ArrayList<ToDo>) todoList);
+            notifyDataSetChanged();
         }
+
+        private boolean toBoolean(int n) {
+            return n != 0;
+        }
+    }
+
+    private List<ToDo> sortByPrio(ArrayList<ToDo> list) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            list.sort((o1, o2) -> Boolean.compare(o2.isPinned(), o1.isPinned()));
+        }
+        return list;
     }
 }
