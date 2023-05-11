@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "686568909656",
+    "project_id": "chatapponandroid",
+    "storage_bucket": "chatapponandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686568909656:android:51de78b90205cda9d4532d",
+        "android_client_info": {
+          "package_name": "com.example.androidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686568909656-5emprv8fqki6udqj6j29soguhhdqjrt2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidapp",
+            "certificate_hash": "9254b792dd521c169b6e9ccdec4925fb1b62c1bd"
+          }
+        },
+        {
+          "client_id": "686568909656-28n7hqqk88mipla5nkv0nutaigns3anf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlvw6vZlOcyfFhxaKM4dWQRyqdXzct6Yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686568909656-28n7hqqk88mipla5nkv0nutaigns3anf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
