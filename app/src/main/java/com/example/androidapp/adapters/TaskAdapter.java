@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidapp.OnItemLongClickListener;
+import com.example.androidapp.R;
 import com.example.androidapp.databinding.ItemContainerTaskBinding;
 import com.example.androidapp.models.ToDo;
 
@@ -67,7 +69,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             });
 
             if (toDo.isPinned()) {
-                itemView.setBackgroundColor(Color.YELLOW);
+                binding.checkbox.setBackgroundColor(Color.argb(230,28, 46, 70));
+//                CardView cardView = findViewById(R.id.card_view);
+//                cardView.setCardBackgroundColor(Color.argb(230,28, 46, 70));
+//          to byłoby dobre ale nie mogę wywołać cardView poza activity
                 Log.d("isPinned ","is true");
             } else {
                 itemView.setBackgroundColor(Color.TRANSPARENT);
