@@ -40,6 +40,18 @@
                 app:layout_constraintStart_toStartOf="@+id/checkbox"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox" />
 
+            <ImageView
+                android:id="@+id/task_image"
+                android:layout_width="50dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="336dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/background_icon"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="@dimen/_8sdp"
+                android:contentDescription="Task Image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

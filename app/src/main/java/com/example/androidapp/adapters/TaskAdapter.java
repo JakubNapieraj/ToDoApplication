@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidapp.databinding.ItemContainerTaskBinding;
 import com.example.androidapp.models.ToDo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -53,6 +54,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             binding.checkbox.setText(toDo.task);
             binding.checkbox.setChecked(toBoolean(toDo.status));
             binding.dueDate.setText(toDo.due);
+//            binding.taskImage.setImageURI(toDo.imageURI);
+            Picasso.get().load(toDo.imageURI).into(binding.taskImage);
         }
 
         private boolean toBoolean(int n){

@@ -58,6 +58,21 @@
     <!--            android:layout_gravity="center"-->
     <!--            android:visibility="invisible"/>-->
     <!--    </FrameLayout>-->
+
+    <TextView
+        android:id="@+id/photo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:drawableRight="@drawable/ic_add"
+        android:drawablePadding="8dp"
+        android:text="@string/dodaj_zdjecie"
+        android:textColor="@color/secondary_text"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_edit_text" />
+
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"
@@ -68,6 +83,17 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_edit_text" />
+
+    <ImageView
+        android:id="@+id/task_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="93dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@+id/task_edit_text"
+        tools:layout_editor_absoluteX="8dp"
+        tools:src="@tools:sample/avatars"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

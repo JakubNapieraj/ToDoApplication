@@ -1,18 +1,27 @@
 package com.example.androidapp.activities;
 
+import static com.example.androidapp.AddNewTask.TAG;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidapp.R;
 import com.example.androidapp.databinding.ActivitySingInBinding;
 import com.example.androidapp.utilities.Constants;
 import com.example.androidapp.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,10 +30,12 @@ public class SingInActivity extends AppCompatActivity {
 
     private ActivitySingInBinding binding;
     private PreferenceManager preferenceManager;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firebaseLogin();
 
         if (isDarkModeOn()) {
             setTheme(R.style.Theme_AndroidApp_Dark);
@@ -108,6 +119,23 @@ public class SingInActivity extends AppCompatActivity {
         }
     }
 
+private void firebaseLogin() {
+    firebaseAuth.signInAnonymously()
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // User is signed in anonymously
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        // Perform actions for authenticated user
+                    } else {
+                        // An error occurred while signing in anonymously
+                        Log.w(TAG, "signInAnonymously:failure", task.getException());
+                        // Handle the error
+                    }
+                }
+            });
+}
     private boolean isDarkModeOn() {
         int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         return currentNightMode == Configuration.UI_MODE_NIGHT_YES;

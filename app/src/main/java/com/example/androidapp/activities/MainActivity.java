@@ -25,7 +25,11 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
+    private StorageReference storageReference;
     TaskAdapter taskAdapter;
 
 
@@ -48,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
             setTheme(R.style.Theme_AndroidApp);
         }
         setContentView(R.layout.activity_main);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -123,6 +130,11 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                             toDo.task = queryDocumentSnapshot.getString(Constants.KEY_TASK_NAME);
                             toDo.due = queryDocumentSnapshot.getString(Constants.KEY_TASK_DUE);
                             toDo.status = queryDocumentSnapshot.getLong(Constants.KEY_TASK_STATUS).intValue();
+                            String taskId = queryDocumentSnapshot.getString(Constants.KEY_TASK_ID);
+
+                            StorageReference imageRef = storageReference.child("images/" + "null.jpg");
+                            imageRef.getDownloadUrl().addOnSuccessListener
+                                    (uri -> toDo.imageURI = uri);
                             todoList.add(toDo);
                         }
                         if (todoList.size() > 0) {
