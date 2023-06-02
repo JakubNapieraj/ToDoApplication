@@ -65,8 +65,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 //            binding.taskImage.setImageURI(toDo.imageURI);
 //            Picasso.get().load(toDo.imageURI).into(binding.taskImage);
             if(toDo.taskImage != null) {
-                Log.d("gowno", "DEBUG" + toDo.taskImage.toString());
-                Picasso.get().load(toDo.taskImage).into(binding.taskImage);
+                binding.taskImage.setImageBitmap(toDo.taskImage);
             }
         }
 

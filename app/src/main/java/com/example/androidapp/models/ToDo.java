@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ToDo implements Serializable {
 
     public String task, due, userId;
-    public Uri taskImage;
+    public Bitmap taskImage;
     public int status;
 
 }

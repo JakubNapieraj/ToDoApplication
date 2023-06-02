@@ -26,12 +26,11 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,12 +41,11 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
     private StorageReference storageReference;
-    TaskAdapter taskAdapter;
-
+    private TaskAdapter taskAdapter;
+    private static final int PERMISSION_REQUEST_CODE = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         if (isDarkModeOn()) {
@@ -55,12 +53,11 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         } else {
             setTheme(R.style.Theme_AndroidApp);
         }
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
         loadUserDetails();
         getToken();
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         binding.imageSingOut.setOnClickListener(v -> singOut());
         binding.fabNewChat.setOnClickListener(v ->
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG));
-
     }
 
     private void loadUserDetails() {
@@ -109,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(
                 preferenceManager.getString(Constants.KEY_USER_ID)
-
         );
         HashMap<String, Object> update = new HashMap<>();
         update.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
@@ -139,27 +134,41 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                             toDo.status = queryDocumentSnapshot.getLong(Constants.KEY_TASK_STATUS).intValue();
                             String taskId = queryDocumentSnapshot.getString(Constants.KEY_TASK_ID);
 
-                            String taskImageKey = preferenceManager.getString(Constants.KEY_TASK_IMAGE);
-                            if(taskImageKey != null) {
-//                                    InputStream inputStream = getContentResolver().openInputStream(Uri.parse(taskImageKey));
-                                toDo.taskImage = Uri.parse(taskImageKey);
+                            // Load task image
+                            String taskImageKey = queryDocumentSnapshot.getString(Constants.KEY_TASK_IMAGE);
+                            if (taskImageKey != null) {
+                                Uri imageUri = Uri.parse(taskImageKey);
+                                Bitmap taskBitmap = getBitmapFromUri(imageUri);
+                                toDo.taskImage = taskBitmap;
                             }
 
                             todoList.add(toDo);
-
                         }
                         if (todoList.size() > 0) {
                             taskAdapter = new TaskAdapter(todoList);
                             binding.tasksRecylerView.setAdapter(taskAdapter);
                             binding.tasksRecylerView.setVisibility(View.VISIBLE);
                         } else {
-                            showErrorMessage();
+//                            showErrorMessage();
                         }
                     } else {
                         showErrorMessage();
                     }
                 });
     }
+
+    private Bitmap getBitmapFromUri(Uri uri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            return BitmapFactory.decodeStream(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 
     private void showErrorMessage() {
         binding.textErrorMessage.setText(String.format("%s", getString(R.string.brak_zadan)));
@@ -177,7 +186,9 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     @Override
     public void onDialogClose(DialogInterface dialogInterface) {
         getTodos();
-        taskAdapter.notifyDataSetChanged();
+        if (taskAdapter != null) {
+            taskAdapter.notifyDataSetChanged();
+        }
     }
 
     private boolean isDarkModeOn() {
