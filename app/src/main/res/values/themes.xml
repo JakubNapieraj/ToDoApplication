@@ -3,5 +3,6 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="android:statusBarColor">@color/primary</item>
         <item name="android:background">@color/white</item>
+        <item name="android:colorButtonNormal">@color/error</item>
     </style>
 </resources>

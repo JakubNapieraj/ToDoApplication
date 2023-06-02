@@ -44,7 +44,7 @@
                 android:id="@+id/task_image"
                 android:layout_width="50dp"
                 android:layout_height="51dp"
-                android:layout_marginStart="296dp"
+                android:layout_marginStart="288dp"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/background_icon"
                 android:contentDescription="Task Image"
