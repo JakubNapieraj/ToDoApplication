@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.example.androidapp.AddNewTask;
+import com.example.androidapp.ItemTouchHelperCallback;
 import com.example.androidapp.OnDialogCloseListener;
 import com.example.androidapp.adapters.TaskAdapter;
 import com.example.androidapp.databinding.ActivityMainBinding;
@@ -32,7 +34,12 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
-    TaskAdapter taskAdapter;
+    private TaskAdapter taskAdapter;
+    //private ItemTouchHelper itemTouchHelper;
+
+    ItemTouchHelperCallback itemTouchHelperCallback = new ItemTouchHelperCallback(taskAdapter);
+    ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
+    itemTouchHelper.attachToRecyclerView(binding.tasksRecylerView);
 
 
     @Override
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         getToken();
         setListeners();
         getTodos();
+        itemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(taskAdapter));
     }
 
     private void setListeners() {
@@ -115,8 +123,10 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                             todoList.add(toDo);
                         }
                         if (todoList.size() > 0) {
-                            taskAdapter = new TaskAdapter(todoList);
+                            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(taskAdapter));
+                            taskAdapter = new TaskAdapter(todoList, itemTouchHelper);
                             binding.tasksRecylerView.setAdapter(taskAdapter);
+                            itemTouchHelper.attachToRecyclerView(binding.tasksRecylerView);
                             binding.tasksRecylerView.setVisibility(View.VISIBLE);
                         } else {
                             showErrorMessage();

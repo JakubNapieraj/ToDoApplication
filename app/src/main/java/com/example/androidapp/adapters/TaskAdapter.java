@@ -7,26 +7,37 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
-import com.example.androidapp.OnItemLongClickListener;
-import com.example.androidapp.R;
+import com.example.androidapp.ItemTouchHelperAdapter;
+import com.example.androidapp.ItemTouchHelperCallback;
 import com.example.androidapp.databinding.ItemContainerTaskBinding;
 import com.example.androidapp.models.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder>{
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> implements ItemTouchHelperAdapter {
 
     private List<ToDo> todoList;
     
-    public TaskAdapter(List<ToDo> todoList) {
+    public TaskAdapter(List<ToDo> todoList, ItemTouchHelper itemTouchHelper) {
+        this.itemTouchHelper = itemTouchHelper;
         todoList = sortByPrio((ArrayList<ToDo>) todoList);
         this.todoList = todoList;
+        ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(this);
+        itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(null);
     }
-    
+
+    private final ItemTouchHelper itemTouchHelper;
+
+    @Override
+    public void onItemDismiss(int position) {
+        todoList.remove(position);
+        notifyItemRemoved(position);
+    }
 
     @NonNull
     @Override
@@ -36,7 +47,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 parent,
                 false
         );
-        return new TaskAdapter.TaskViewHolder(itemContainerTaskBinding);
+        TaskViewHolder viewHolder = new TaskViewHolder(itemContainerTaskBinding);
+        itemTouchHelper.attachToRecyclerView((RecyclerView) parent); // Attach the ItemTouchHelper to the RecyclerView
+        return viewHolder;
     }
 
     @Override
