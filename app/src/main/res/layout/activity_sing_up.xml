@@ -64,7 +64,6 @@
             android:inputType="text"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp" />
 
         <EditText
@@ -79,7 +78,6 @@
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp" />
 
         <EditText
@@ -94,7 +92,6 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp" />
 
         <EditText
@@ -109,7 +106,6 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp" />
 
         <FrameLayout
