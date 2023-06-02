@@ -48,6 +48,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
     private PreferenceManager preferenceManager;
     private Context context;
     private ImageView taskImage;
+    private String taskImageString;
 
 
     private StorageReference storageReference;
@@ -153,6 +154,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
             taskMap.put(Constants.KEY_TASK_STATUS, 0);
             taskMap.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
             taskMap.put(Constants.KEY_TASK_ID, taskId.toString());
+            taskMap.put(Constants.KEY_TASK_IMAGE, taskImageString);
             database.collection(Constants.KEY_COLLECTION_TASKS)
                     .add(taskMap)
                     .addOnSuccessListener(documentReference -> {
@@ -165,6 +167,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
         Uri imageUri = gallery.getData();
 
         if (imageUri != null) {
+            taskImageString = imageUri.toString();
+            preferenceManager.putString(Constants.KEY_TASK_IMAGE, imageUri.toString());
             StorageReference fileRef = storageReference.child(imagePath).child(taskId.toString() + ".jpg");
             Picasso.get().load(imageUri).into(taskImage);
             fileRef.putFile(imageUri)

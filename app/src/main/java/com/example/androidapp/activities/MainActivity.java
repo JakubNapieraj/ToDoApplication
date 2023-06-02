@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -30,6 +31,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,9 +77,13 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
 
     private void loadUserDetails() {
         binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
-        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        binding.imageProfile.setImageBitmap(bitmap);
+
+        String imageString = preferenceManager.getString(Constants.KEY_IMAGE);
+        if (imageString != null) {
+            byte[] bytes = Base64.decode(imageString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            binding.imageProfile.setImageBitmap(bitmap);
+        }
     }
 
     private void showToats(String message) {
@@ -132,10 +139,14 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                             toDo.status = queryDocumentSnapshot.getLong(Constants.KEY_TASK_STATUS).intValue();
                             String taskId = queryDocumentSnapshot.getString(Constants.KEY_TASK_ID);
 
-                            StorageReference imageRef = storageReference.child("images/" + "null.jpg");
-                            imageRef.getDownloadUrl().addOnSuccessListener
-                                    (uri -> toDo.imageURI = uri);
+                            String taskImageKey = preferenceManager.getString(Constants.KEY_TASK_IMAGE);
+                            if(taskImageKey != null) {
+//                                    InputStream inputStream = getContentResolver().openInputStream(Uri.parse(taskImageKey));
+                                toDo.taskImage = Uri.parse(taskImageKey);
+                            }
+
                             todoList.add(toDo);
+
                         }
                         if (todoList.size() > 0) {
                             taskAdapter = new TaskAdapter(todoList);
