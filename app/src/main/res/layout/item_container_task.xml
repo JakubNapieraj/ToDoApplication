@@ -44,14 +44,14 @@
                 android:id="@+id/task_image"
                 android:layout_width="50dp"
                 android:layout_height="51dp"
-                android:layout_marginStart="336dp"
+                android:layout_marginStart="296dp"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/background_icon"
+                android:contentDescription="Task Image"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riv_corner_radius="@dimen/_8sdp"
-                android:contentDescription="Task Image" />
+                app:riv_corner_radius="@dimen/_8sdp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
