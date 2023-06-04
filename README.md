@@ -12,6 +12,7 @@
   - [Spis treści](#spis-treści)
   - [Opis](#opis)
   - [Diagramy](#diagramy)
+  - [Instalacja aplikacji](#instalacja-aplikacji)
   - [Komponenty aplikacji](#komponenty-aplikacji)
     - [Activity](#activity)
     - [Adapters](#adapters)
@@ -43,6 +44,8 @@ flowchart LR;
     v ==>|Sends input from user| c(Adapter);
     c -->|Manipulates| m
 ```
+## Instalacja aplikacji
+Aby zainstalować aplikację należy pobrać plik .APK na telefon z systemem Android, kliknąć w niego w menadżerze plików i zainstalować. W przypadku, gdy system operacyjny nie rozpozna aplikacji jako zaufanej, należy manualnie zgodzić się na instalację z tak zwanego "trzeciego źródła".
 
 ## Komponenty aplikacji
 ### Activity
