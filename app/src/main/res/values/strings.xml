@@ -25,4 +25,7 @@
     <string name="zapisz">Save</string>
     <string name="data">Date</string>
     <string name="dodaj_zdjecie">Add photo</string>
+
+    <string name="facebook_app_id">635746968601088</string>
+    <string name="facebook_client_token">f2cb443bce3b8306816fb4f30ce56ceb</string>
 </resources>

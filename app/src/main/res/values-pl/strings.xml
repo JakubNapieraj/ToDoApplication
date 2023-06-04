@@ -26,4 +26,7 @@
     <string name="data">Data</string>
     <string name="dodaj_zdjecie">Dodaj zdjęcie</string>
 
+    <string name="facebook_app_id">635746968601088</string>
+    <string name="facebook_client_token">f2cb443bce3b8306816fb4f30ce56ceb</string>
+
 </resources>
