@@ -35,18 +35,14 @@
 Aplikacja mobilna stworzona w technologii Java w środowisku Android Studio z wykorzystaniem Firebase oraz reklam Facebook'a pozwalająca na przechowywanie list rzeczy do zrobionych. Aplikacja pozwala na tworzenie list rzeczy do zrobienia przypisanych do konkretnego konta użytkownika.
 
 ## Diagramy
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-<div class="mermaid">
+```mermaid
 %%{init: {'theme':'neutral'}}%%
 flowchart LR;
     c ==>|Sometimes updates directly| v
     m(Model) -->|Updates| v(Activity);
     v ==>|Sends input from user| c(Adapter);
     c -->|Manipulates| m
-</div>
+```
 
 ## Komponenty aplikacji
 ### Activity
@@ -240,10 +236,10 @@ Niestety pomimo wszelkich starań nie udało nam się zaimplementować wszystkic
  - [x] Dwie wersje językowe PL/EN
 
 ## Procentowy udział członków grupy w realizacji zadań
-<div class="mermaid">
+```mermaid
 pie title Skład osobowy;
     "Marcel Zawadzki": 100
     "Jakub Napieraj": 132
     "Michał Szymański": 100
     "Michał Domański": 100
-</div>
+```
