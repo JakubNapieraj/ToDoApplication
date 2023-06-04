@@ -42,7 +42,6 @@ public class SingInActivity extends AppCompatActivity {
 
     private ActivitySingInBinding binding;
     private AdView adView;
-    private NativeAd nativeAd;
     private PreferenceManager preferenceManager;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -69,37 +68,19 @@ public class SingInActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setListeners();
 //
-        AudienceNetworkAds.initialize(this);
-        AdSettings.setDebugBuild(BuildConfig.DEBUG);
-        AdSettings.addTestDevice("5ca2a4f6");
-        boolean shouldCollectAdvertiserId = true; // Set this based on user consent
-        String[] dataProcessingOptions = shouldCollectAdvertiserId ? new String[]{"LDU"} : null;
-        AdSettings.setDataProcessingOptions(dataProcessingOptions);
-////        AppEventsLogger.setPushNotificationsRegistrationEnabled(true);
-////        AppEventsLogger.setAutoLogAppEventsEnabled(true);
-////        AppEventsLogger.setAdvertiserIDCollectionEnabled(true);
-//
-//        nativeAd = new NativeAd(this, "VID_HD_9_16_39S_APP_INSTALL#{your-placement-id}");
-//
-        setAutoLogAppEventsEnabled(true);
         adView = new AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+
+// Find the Ad Container
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
+
+// Add the ad view to your activity layout
         adContainer.addView(adView);
-//        adView.loadAd();
-//        nativeAd.loadAd();
 
-
-        if (BuildConfig.DEBUG) {
-            AdSettings.setTestMode(true);
-        }
-        com.facebook.ads.AdView adView;
-        adView = new com.facebook.ads.AdView(this, "PLACEMENT-ID",
-                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
-
-        ((LinearLayout) adContainer).addView(adView);
+// Request an ad
         adView.loadAd();
-
     }
+
+
 
     private void setListeners() {
         binding.textCreateNewAccount
