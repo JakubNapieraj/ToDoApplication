@@ -67,7 +67,7 @@ Modele reprezentują struktury danych lub jednostki w projekcie. Definiują wła
 
 ### Utilities
 Użyteczniki to klasy pomocnicze lub pliki, które dostarczają wspólne funkcje lub kod wielokrotnego użytku w całym projekcie:
-- **Constraints:** Ten użytecznik zawiera stałe używane w całej aplikacji. Definiuje pola danych w aplikacji. Można wykorzystywać go w różnych miejscach kodu więc pola pozostaną takie same. 
+- **Constraints:** Ten użytecznik zawiera stałe używane w całej aplikacji. Definiuje nazwy kluczy, kolekcji i innych wartości używanych w kontekście użytkowników i zadań w aplikacji.Dzięki użyciu stałych, zamiast używania bezpośrednio ciągów znaków w różnych miejscach kodu, możemy odwoływać się do stałych wartości w sposób bardziej intuicyjny i bezpieczny.
 - **PreferenceManager:** To własna implementacja rozszerzenia klasy SharedPreference.
 
 ## Logowanie
